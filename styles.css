@@ -1,1 +1,68 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap');
+* {
+  box-sizing: border-box;
+}
 
+body {
+  margin: 0;
+  font-family: 'Roboto';
+  background: linear-gradient(0deg, rgba(209,0,255,1) 0%, rgba(0,232,255,1) 100%) no-repeat center center fixed;
+}
+
+main {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+#weather_result {
+  background: #0099e3;
+  height: 280px;
+  box-shadow: 0px 2px 8px #2d5672;
+  border-radius: 12px;
+}
+
+#inner_weather {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+#weather_result p {
+  margin: 0;
+  padding: 0;
+}
+
+#data_temperature {
+  font-size: 50px;
+  color: #fff;
+}
+
+#_city_name {
+  font-size: 22px;
+}
+
+#weather_description,
+#_city_name,
+#data_country {
+  color: rgba(170, 228, 255, 0.959);
+}
+
+#weather_icon {
+  height: 50px;
+}
+
+#weather_form {
+  margin-bottom: 10px;
+}
+
+#city_name {
+  border: 1px solid rgb(110, 110, 110);
+  border-radius: 5px;
+  height: 46px;
+  width: 380px;
+  font-size: 22px;
+  padding-left: 10px;
+}

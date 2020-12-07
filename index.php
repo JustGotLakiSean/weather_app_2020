@@ -5,14 +5,17 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Weather App 2020</title>
+  <style>
+    <?php include 'styles.css'; ?>
+  </style>
 </head>
 
 <body>
   <!-- Weather form -->
   <main id="main">
     <form action="" method="POST" id="weather_form">
-      <input type="text" name="city_name" id="city_name" />
-      <input type="submit" name="get_weather" id="get_weather" required />
+      <input type="text" name="city_name" id="city_name" placeholder="Type city..." required />
+      <input type="submit" name="get_weather" id="get_weather" />
     </form>
 
     <?php
@@ -37,14 +40,17 @@
         curl_close($curl);
 
         $weather_description = ucwords($data->weather[0]->description);
+        $weather_city_name = strtoupper($data->name);
 
         echo <<<WEATHER_RESULT
-      <section id="weather_result">
-        <p id="_city_name">{$data->name}</p>
-        <p id="data_country">{$data->sys->country}</p>
-        <img src="http://openweathermap.org/img/w/{$data->weather[0]->icon}.png" id = "weather_icon"/>
-        <p id="data_temperature">{$data->main->temp}°C</p>
-        <p id="weather_description">{$weather_description}</p>
+      <section id="weather_result" align="center">
+        <div id="inner_weather">
+          <p id="data_temperature">{$data->main->temp}°C</p>
+          <p id="_city_name">{$weather_city_name}, {$data->sys->country}</p>
+          <p id="data_country"></p>
+          <img src="http://openweathermap.org/img/w/{$data->weather[0]->icon}.png" id = "weather_icon"/>
+          <p id="weather_description">{$weather_description}</p>
+        </div>
       </section>
 WEATHER_RESULT;
       } else {
