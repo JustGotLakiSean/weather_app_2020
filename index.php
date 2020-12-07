@@ -15,14 +15,14 @@
   <main id="main">
     <form action="" method="POST" id="weather_form">
       <input type="text" name="city_name" id="city_name" placeholder="Type city..." required />
-      <input type="submit" name="get_weather" id="get_weather" />
+      <input type="submit" name="get_weather" id="get_weather" value="GO" />
     </form>
 
     <?php
 
     if (isset($_POST['get_weather'])) {
       $city_name = '';
-      $weather_request = '';
+      $weather_response = '';
       $api_key = '';
       if (isset($_POST['city_name'])) {
         $city_name = htmlentities($_POST['city_name'], ENT_QUOTES, 'UTF-8');
@@ -43,8 +43,11 @@
         $weather_city_name = strtoupper($data->name);
 
         echo <<<WEATHER_RESULT
-      <section id="weather_result" align="center">
-        <div id="inner_weather">
+      <section id="weather_result" >
+        <div id="btn_container">
+          <button type="button" onclick="window.location.href='index.php'" id="btn_done">DONE</button>
+        </div>
+        <div id="inner_weather" align="center">
           <p id="data_temperature">{$data->main->temp}°C</p>
           <p id="_city_name">{$weather_city_name}, {$data->sys->country}</p>
           <p id="data_country"></p>
