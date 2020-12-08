@@ -24,6 +24,9 @@
       $city_name = '';
       $weather_response = '';
       $api_key = '';
+      $data = '';
+      $weather_city_name = '';
+      $weather_description = '';
       if (isset($_POST['city_name'])) {
         $city_name = htmlentities($_POST['city_name'], ENT_QUOTES, 'UTF-8');
         $api_key = "c7f8e92990d0d095596be9a4dea86104";
@@ -39,10 +42,11 @@
         $data = json_decode($weather_response);
         curl_close($curl);
 
-        $weather_description = ucwords($data->weather[0]->description);
-        $weather_city_name = strtoupper($data->name);
+        if ($city_name === $weather_city_name) {
+          $weather_description = ucwords($data->weather[0]->description);
+          $weather_city_name = strtoupper($data->name);
 
-        echo <<<WEATHER_RESULT
+          echo <<<WEATHER_RESULT
       <section id="weather_result" >
         <div id="btn_container">
           <button type="button" onclick="window.location.href='index.php'" id="btn_done">DONE</button>
@@ -56,6 +60,18 @@
         </div>
       </section>
 WEATHER_RESULT;
+        } else {
+          echo <<<WEATHER_RESULT
+          <section id="weather_result" >
+            <div id="btn_container">
+              <button type="button" onclick="window.location.href='index.php'" id="btn_done">DONE</button>
+            </div>
+            <div id="inner_weather" align="center">
+              <div>No City Found...</div>
+            </div>
+          <section>
+WEATHER_RESULT;
+        }
       } else {
       }
     } else {
